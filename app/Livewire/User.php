@@ -11,7 +11,10 @@ class User extends Component
 {
     use WithPagination;
 
-    public $isOpen = 0;
+    public $title = 'User';
+    public $search;
+
+
     #[Rule('required|min:3')]
     public $name;
 
@@ -21,59 +24,59 @@ class User extends Component
     public $users = [];
 
 
-    public function openModal()
-    {
-        $this->isOpen = true;
-    }
-    public function closeModal()
-    {
-        $this->isOpen = false;
-    }
+    // public function openModal()
+    // {
+    //     $this->isOpen = true;
+    // }
+    // public function closeModal()
+    // {
+    //     $this->isOpen = false;
+    // }
 
-    public function create()
-    {
-        $this->reset('name', 'email', 'userId');
-        $this->openModal();
-    }
+    // public function create()
+    // {
+    //     $this->reset('name', 'email', 'userId');
+    //     $this->openModal();
+    // }
 
-    public function store()
-    {
-        $this->validate();
-        ModelsUser::create([
-            'name' => $this->name,
-            'email' => $this->email,
-        ]);
+    // public function store()
+    // {
+    //     $this->validate();
+    //     ModelsUser::create([
+    //         'name' => $this->name,
+    //         'email' => $this->email,
+    //     ]);
 
-        $this->mount();
-        $this->reset('name', 'email');
-        $this->closeModal();
-        session()->flash('success', 'User created successfully.');
-    }
+    //     $this->mount();
+    //     $this->reset('name', 'email');
+    //     $this->closeModal();
+    //     session()->flash('success', 'User created successfully.');
+    // }
 
 
-    public function update()
-    {
-        if ($this->userId) {
-            $post = ModelsUser::findOrFail($this->userId);
-            $post->update([
-                'name' => $this->name,
-                'email' => $this->email,
-            ]);
-            session()->flash('success', 'User updated successfully.');
-            $this->closeModal();
-            $this->reset('name', 'email', 'userId');
-        }
-    }
+    // public function update()
+    // {
+    //     if ($this->userId) {
+    //         $post = ModelsUser::findOrFail($this->userId);
+    //         $post->update([
+    //             'name' => $this->name,
+    //             'email' => $this->email,
+    //         ]);
+    //         session()->flash('success', 'User updated successfully.');
+    //         $this->closeModal();
+    //         $this->reset('name', 'email', 'userId');
+    //     }
+    // }
 
-    public function edit($id)
-    {
-        $post = ModelsUser::findOrFail($id);
-        $this->userId = $id;
-        $this->name = $post->name;
-        $this->email = $post->email;
-        $this->openModal();
-        $this->mount();
-    }
+    // public function edit($id)
+    // {   
+    //     $post = ModelsUser::findOrFail($id);
+    //     $this->userId = $id;
+    //     $this->name = $post->name;
+    //     $this->email = $post->email;
+    //     $this->openModal();
+    //     $this->mount();
+    // }
 
 
     public function delete($id)
@@ -84,18 +87,23 @@ class User extends Component
         $this->mount();
     }
 
+    public function updated(){
+        $this->users = [];
+        if ( $this->search) {
+            $this->users = ModelsUser::where('email', 'like', '%' . $this->search . '%')->get();
+        }
+        $this->render();
+    }
+
+
     public function mount()
     {
         $this->users = ModelsUser::get();
     }
 
-    public function updated()
-    {
-        $this->users = ModelsUser::get();
-    }
-
     public function render()
-    {
-        return view('livewire.user');
+    {   
+        
+        return view('livewire.user.user-list')->title($this->title); 
     }
 }

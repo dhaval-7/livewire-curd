@@ -1,6 +1,3 @@
-@extends('layouts.master')
-
-@section('main')
 <div class="main-panel">
     <div class="content-wrapper">
       
@@ -9,9 +6,10 @@
           <div class="d-flex justify-content-between flex-wrap">
             <div class="d-flex align-items-end flex-wrap">
               <div class="me-md-3 me-xl-5">
-                <h2>Welcome back,</h2>
-                <p class="mb-md-0">Your analytics dashboard template.</p>
+                <h3>Welcome back, {{ $user}}</h3>
+                <p class="mb-md-0">Your analytics dashboard.</p>
               </div>
+              <br>
               <div class="d-flex">
                 <i class="mdi mdi-home text-muted hover-cursor"></i>
                 <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
@@ -57,12 +55,12 @@
                         <small class="mb-1 text-muted">Start date</small>
                         <div class="dropdown">
                           <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
+                            <h5 class="mb-0 d-inline-block">26 Jul 2023</h5>
                           </a>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                            <a class="dropdown-item" href="#">12 Aug 2018</a>
-                            <a class="dropdown-item" href="#">22 Sep 2018</a>
-                            <a class="dropdown-item" href="#">21 Oct 2018</a>
+                            <a class="dropdown-item" href="#">12 Aug 2023</a>
+                            <a class="dropdown-item" href="#">22 Sep 2023</a>
+                            <a class="dropdown-item" href="#">21 Oct 2023</a>
                           </div>
                         </div>
                       </div>
@@ -105,12 +103,12 @@
                         <small class="mb-1 text-muted">Start date</small>
                         <div class="dropdown">
                           <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
+                            <h5 class="mb-0 d-inline-block">26 Jul 2023</h5>
                           </a>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                            <a class="dropdown-item" href="#">12 Aug 2018</a>
-                            <a class="dropdown-item" href="#">22 Sep 2018</a>
-                            <a class="dropdown-item" href="#">21 Oct 2018</a>
+                            <a class="dropdown-item" href="#">12 Aug 2023</a>
+                            <a class="dropdown-item" href="#">22 Sep 2023</a>
+                            <a class="dropdown-item" href="#">21 Oct 2023</a>
                           </div>
                         </div>
                       </div>
@@ -153,12 +151,12 @@
                         <small class="mb-1 text-muted">Start date</small>
                         <div class="dropdown">
                           <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
+                            <h5 class="mb-0 d-inline-block">26 Jul 2023</h5>
                           </a>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                            <a class="dropdown-item" href="#">12 Aug 2018</a>
-                            <a class="dropdown-item" href="#">22 Sep 2018</a>
-                            <a class="dropdown-item" href="#">21 Oct 2018</a>
+                            <a class="dropdown-item" href="#">12 Aug 2023</a>
+                            <a class="dropdown-item" href="#">22 Sep 2023</a>
+                            <a class="dropdown-item" href="#">21 Oct 2023</a>
                           </div>
                         </div>
                       </div>
@@ -222,7 +220,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-md-12 stretch-card">
           <div class="card">
             <div class="card-body">
@@ -245,7 +243,7 @@
                         <td>Levelled up</td>
                         <td>Catalinaborough</td>
                         <td>$790</td>
-                        <td>06 Jan 2018</td>
+                        <td>06 Jan 2023</td>
                         <td>$2274253</td>
                     </tr>
                     <tr>
@@ -253,7 +251,7 @@
                         <td>Ui design completed</td>
                         <td>East Mayra</td>
                         <td>$23230</td>
-                        <td>18 Jul 2018</td>
+                        <td>18 Jul 2023</td>
                         <td>$83127</td>
                     </tr>
                     <tr>
@@ -261,7 +259,7 @@
                         <td>support</td>
                         <td>Makennaton</td>
                         <td>$939</td>
-                        <td>16 Jul 2018</td>
+                        <td>16 Jul 2023</td>
                         <td>$29177</td>
                     </tr>
                     <tr>
@@ -269,7 +267,7 @@
                         <td>support</td>
                         <td>Agustinaborough</td>
                         <td>$30</td>
-                        <td>30 Apr 2018</td>
+                        <td>30 Apr 2023</td>
                         <td>$44617</td>
                     </tr>
                     <tr>
@@ -277,7 +275,7 @@
                         <td>Ui design not completed</td>
                         <td>Lake Sandrafort</td>
                         <td>$571</td>
-                        <td>25 Jun 2018</td>
+                        <td>25 Jun 2023</td>
                         <td>$78952</td>
                     </tr>
                     <tr>
@@ -285,7 +283,7 @@
                         <td>Ui design completed</td>
                         <td>Cassinbury</td>
                         <td>$36</td>
-                        <td>05 Nov 2018</td>
+                        <td>05 Nov 2023</td>
                         <td>$36422</td>
                     </tr>
                     <tr>
@@ -293,7 +291,7 @@
                         <td>New project</td>
                         <td>Cletaborough</td>
                         <td>$314</td>
-                        <td>12 Jul 2018</td>
+                        <td>12 Jul 2023</td>
                         <td>$34167</td>
                     </tr>
                     <tr>
@@ -301,7 +299,7 @@
                         <td>Levelled up</td>
                         <td>West Fidelmouth</td>
                         <td>$484</td>
-                        <td>08 Sep 2018</td>
+                        <td>08 Sep 2023</td>
                         <td>$50862</td>
                     </tr>
                   </tbody>
@@ -310,7 +308,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
@@ -321,5 +319,4 @@
     </div>
     </footer>
     <!-- partial -->
-  </div>    
-@endsection
+  </div>

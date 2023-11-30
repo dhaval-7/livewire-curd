@@ -16,7 +16,8 @@
     <link rel="stylesheet" href={{ asset('admin/css/style.css') }}>
     <!-- endinject -->
     <link rel="shortcut icon" href={{ asset('admin/images/favicon.png') }} />
-    <title>{{ $title ?? 'Page Title' }}</title>
+    <title>{{ $title ?? 'Dashboard Home' }}</title>
+    @livewireStyles
 
 
 </head>
@@ -24,16 +25,18 @@
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
-        @include('layouts.nav')
+        @include('components.layouts.nav')
+
+        {{-- @livewire('components.layouts.nav', ['user_name' => $userName ?? '']) --}}
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
-            @include('layouts.sidemenu')
+            @include('components.layouts.sidemenu')
 
             <!-- partial -->
             {{-- @yield('main') --}}
-            {{ $slot }}
-
+            {{ $slot ?? ''}}
+     
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
@@ -61,6 +64,7 @@
     <!-- End custom js for this page-->
 
     <script src={{ asset('admin/js/jquery.cookie.js') }} type="text/javascript"></script>
+    @livewireScripts
 
 </body>
 
