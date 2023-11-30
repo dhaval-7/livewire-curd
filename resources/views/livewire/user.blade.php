@@ -4,7 +4,7 @@
             <div class="max-w-xl">
                 <section>
                     <div class="my-4">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        <button class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
                             wire:click="create">Add User</button>
                     </div>
                     @if ($isOpen)
@@ -36,9 +36,9 @@
                                     <div class="flex justify-end">
 
                                         <button type="submit"
-                                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">{{ $userId ? 'update' : 'create' }}</button>
+                                            class="bg-green-500 hover:bg-green-600  font-bold py-2 px-4 rounded mr-2">{{ $userId ? 'update' : 'create' }}</button>
                                         <button type="button"
-                                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                            class="bg-red-500 hover:bg-red-600  font-bold py-2 px-4 rounded"
                                             wire:click="closeModal">Cancel</button>
                                     </div>
                                 </form>

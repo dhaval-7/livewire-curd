@@ -21,3 +21,7 @@ Route::get('/', function () {
 
 
 Route::get('/user', User::class)->name('user');
+
+Route::get('/home', function () {
+    return view('layouts.master');
+})->name('home');
