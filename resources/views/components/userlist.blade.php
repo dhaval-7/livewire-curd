@@ -2,8 +2,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Basic Table</h4>
-
+                <h4 class="card-title">Users Table</h4>
                 <div class="table-responsive">
                     <table class="table">
                         @if (count($users))
@@ -21,6 +20,11 @@
                                     <td> {{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
+                                        <a wire:click="check({{ $user->id }})">
+                                            <button class="btn btn-inverse-danger btn-fw" type="button">
+                                                check
+                                            </button>
+                                        </a>
                                         <a href={{ route('user.edit', ['id' => $user->id]) }} wire:navigate>
                                             <button class="btn btn-inverse-success btn-fw" type="button">
                                                 edit

@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
 use Livewire\WithPagination;
@@ -22,61 +24,7 @@ class User extends Component
     public $email;
     public $userId;
     public $users = [];
-
-
-    // public function openModal()
-    // {
-    //     $this->isOpen = true;
-    // }
-    // public function closeModal()
-    // {
-    //     $this->isOpen = false;
-    // }
-
-    // public function create()
-    // {
-    //     $this->reset('name', 'email', 'userId');
-    //     $this->openModal();
-    // }
-
-    // public function store()
-    // {
-    //     $this->validate();
-    //     ModelsUser::create([
-    //         'name' => $this->name,
-    //         'email' => $this->email,
-    //     ]);
-
-    //     $this->mount();
-    //     $this->reset('name', 'email');
-    //     $this->closeModal();
-    //     session()->flash('success', 'User created successfully.');
-    // }
-
-
-    // public function update()
-    // {
-    //     if ($this->userId) {
-    //         $post = ModelsUser::findOrFail($this->userId);
-    //         $post->update([
-    //             'name' => $this->name,
-    //             'email' => $this->email,
-    //         ]);
-    //         session()->flash('success', 'User updated successfully.');
-    //         $this->closeModal();
-    //         $this->reset('name', 'email', 'userId');
-    //     }
-    // }
-
-    // public function edit($id)
-    // {   
-    //     $post = ModelsUser::findOrFail($id);
-    //     $this->userId = $id;
-    //     $this->name = $post->name;
-    //     $this->email = $post->email;
-    //     $this->openModal();
-    //     $this->mount();
-    // }
+    public $testevent = '';
 
 
     public function delete($id)
@@ -87,23 +35,28 @@ class User extends Component
         $this->mount();
     }
 
-    public function updated(){
-        $this->users = [];
-        if ( $this->search) {
-            $this->users = ModelsUser::where('email', 'like', '%' . $this->search . '%')->get();
-        }
-        $this->render();
-    }
-
 
     public function mount()
     {
         $this->users = ModelsUser::get();
     }
 
+    #[On('update-records')]
+    public function updated()
+    {
+        $this->mount();
+    }
+
+
+    public function check($id)
+    {
+        $user = ModelsUser::findOrFail($id);
+        $this->dispatch('post-created', email: $user->email);
+    }
+
     public function render()
-    {   
-        
-        return view('livewire.user.user-list')->title($this->title); 
+    {
+
+        return view('livewire.user')->title($this->title);
     }
 }

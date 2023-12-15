@@ -22,18 +22,17 @@ class UserForm extends Component
 
 
     public function store()
-    {
+    {   
         $this->validate();
-        User::create([
+        $user =  User::create([
             'name' => $this->name,
             'email' => $this->email,
         ]);
 
         $this->reset('name', 'email');
-        session()->flash('success', 'User created successfully.');
-        $this->redirect(LivewireUser::class,  navigate: true);
-
-        // return redirect(route('user'));
+        $this->mount();
+        $this->dispatch('update-records');
+        // $this->redirect(LivewireUser::class,  navigate: true);
     }
 
 
@@ -45,12 +44,20 @@ class UserForm extends Component
                 'name' => $this->name,
                 'email' => $this->email,
             ]);
-            session()->flash('success', 'User updated successfully.');
             $this->reset('name', 'email', 'userId');
-            $this->redirect(LivewireUser::class,  navigate: true);
+            $this->render();
+            // $this->redirect(LivewireUser::class,  navigate: true);
             // return redirect(route('user'));
 
         }
+    }
+
+    public function delete($id)
+    {
+        User::find($id)->delete();
+        session()->flash('success', 'User deleted successfully.');
+        $this->reset('name', 'email');
+        $this->mount();
     }
 
 
@@ -71,7 +78,16 @@ class UserForm extends Component
         if ($id) {
             $this->edit($id);
         }
+        $this->users = User::get();
     }
+
+    public function check($id)
+    {
+        $user = User::findOrFail($id);
+        $this->dispatch('post-created', email: $user->email);
+        // $this->dispatch('reRenderParent',id: $id);
+    }
+
 
     public function render()
     {

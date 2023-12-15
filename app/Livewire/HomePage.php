@@ -2,18 +2,25 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class HomePage extends Component
 {
     public $user = 'Dhaval';
-    public $userName = 'test';
-    protected $listeners = ['reRenderParent'];
+    public $user_name = 'test';
+    public $test = '';
 
-    public function reRenderParent()
+    protected $listeners = ['post-created'];
+
+
+ 
+
+    #[On('test-event')] 
+    public function updatePostList()
     {   
-        $this->mount();
-        $this->render();
+        $this->test = 'test';
     }
 
 

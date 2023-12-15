@@ -7,6 +7,12 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link"  href= {{  route('user.create') }} wire:navigate>
+        <i class="mdi mdi-account menu-icon"></i>
+        <span class="menu-title">user.create</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link"  href= {{  route('user') }} wire:navigate>
         <i class="mdi mdi-account menu-icon"></i>
         <span class="menu-title">User</span>
