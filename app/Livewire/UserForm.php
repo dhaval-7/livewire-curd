@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\User as LivewireUser;
 use App\Models\User;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -23,6 +24,8 @@ class UserForm extends Component
 
     public function store()
     {   
+        // dd($this->name , $this->email);
+
         $this->validate();
         $user =  User::create([
             'name' => $this->name,
@@ -32,7 +35,6 @@ class UserForm extends Component
         $this->reset('name', 'email');
         $this->mount();
         $this->dispatch('update-records');
-        // $this->redirect(LivewireUser::class,  navigate: true);
     }
 
 
@@ -45,10 +47,7 @@ class UserForm extends Component
                 'email' => $this->email,
             ]);
             $this->reset('name', 'email', 'userId');
-            $this->render();
-            // $this->redirect(LivewireUser::class,  navigate: true);
-            // return redirect(route('user'));
-
+            $this->dispatch('update-records');
         }
     }
 
@@ -61,6 +60,20 @@ class UserForm extends Component
     }
 
 
+    #[On('from-data')]
+    public function formData($data)
+    {       
+        // $this->name ='testneme';
+        $this->{$data['name']} = $data['value'];
+    }
+
+
+    #[On('update-user')]
+    public function editForm($id)
+    {       
+        $this->edit($id);
+    }
+
     public function edit($id)
     {
         $post = User::findOrFail($id);
@@ -68,17 +81,17 @@ class UserForm extends Component
         $this->name = $post->name;
         $this->email = $post->email;
         $this->title = 'Edit User';
-        
-        $this->dispatch('reRenderParent')->to(HomePage::class);
+        $this->mount();
     }
 
 
     public function mount($id = '')
-    {
+    {   
+        // $this->email = 'test@email.com';
+        // $this->name = 'test';
         if ($id) {
             $this->edit($id);
         }
-        $this->users = User::get();
     }
 
     public function check($id)

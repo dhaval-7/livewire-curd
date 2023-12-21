@@ -25,7 +25,7 @@
                                                 check
                                             </button>
                                         </a>
-                                        <a href={{ route('user.edit', ['id' => $user->id]) }} wire:navigate>
+                                        <a wire:click="editForm({{ $user->id }})">
                                             <button class="btn btn-inverse-success btn-fw" type="button">
                                                 edit
                                             </button>

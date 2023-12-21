@@ -17,8 +17,6 @@ class UserCard extends Component
         $this->email = $email;
     }
 
-
-
     public function testevent(){
         $this->dispatch('test-event');
     }
